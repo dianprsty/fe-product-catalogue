@@ -1,0 +1,38 @@
+Register :
+{
+    "email": "arhandev@test.com",
+    "name": "Farhan Abdul Hamid",
+    "username": "arhandevti",
+    "password": "123412345",
+    "password_confirmation": "12341234"
+}
+
+login:
+{
+    "email": "arhandev@test.co.id",
+    "password": "12341234"
+}
+
+create :
+{
+    "nama": "TWS",
+    "is_diskon": true,
+    "harga": 99000,
+    "harga_diskon": 89000,
+    "stock": 20,
+    "description": "ini adalah earphone",
+    "category": "teknologi",
+    "image_url": "https://arhandev.maisyah.id/images/earphone.jpg"
+}
+
+update :
+{
+    "nama": "Earphone murah berkualitas Update",
+    "is_diskon": true,
+    "harga": 200000,
+    "harga_diskon": 100000,
+    "stock": 200,
+    "description": "ini adalah deskripsi",
+    "category": "kesehatan",
+    "image_url": "https://arhandev.xyz/public/images/earphone.jpg"
+}
