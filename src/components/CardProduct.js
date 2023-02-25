@@ -8,7 +8,7 @@ const getDiskonPercentage = (item) => {
 const CardProduct = ({item}) => {
   return (
     <Link to={`/product/${item.id}`} key={item.id} 
-      className='rounded-2xl shadow-md overflow-hidden'>
+      className='rounded-2xl shadow-md overflow-hidden hover:text-slate-900'>
       <img 
         className='h-56 w-full object-cover object-center'
         src={item.image_url} alt={item.nama} />

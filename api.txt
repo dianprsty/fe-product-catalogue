@@ -1,4 +1,4 @@
-Register :
+Register : https://arhandev.maisyah.id/api/final/login/register
 {
     "email": "arhandev@test.com",
     "name": "Farhan Abdul Hamid",
@@ -7,7 +7,7 @@ Register :
     "password_confirmation": "12341234"
 }
 
-login:
+login: https://arhandev.maisyah.id/api/final/login
 {
     "email": "arhandev@test.co.id",
     "password": "12341234"

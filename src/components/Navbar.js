@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalContext';
-// import DropdownNavbar from './DropdownNavbar';s
+import DropdownNavbar from './DropdownNavbar';
 
 
 const Navbar = () => {
@@ -27,15 +27,16 @@ const Navbar = () => {
         <li className='hover:text-blue-500'><Link to='catalog'>Product</Link></li>
       </ul>
       <div className='w-2/12 flex p-5' >
-        <div className='flex gap-2'>
-          <button className='bg-slate-900 font-semibold text-white p-2 rounded-md'>
-            <Link to={'/login'} >Login</Link>
-          </button>
-          <button className='border font-semibold p-2 rounded-md'>
-            <Link to={'/register'} >Register</Link>
-          </button>
-        </div>
-        {/* <DropdownNavbar /> */}
+        {localStorage.getItem('token') === null
+          ? <div className='flex gap-2'>
+              <button className='bg-slate-900 font-semibold text-white p-2 rounded-md'>
+                <Link to={'/login'} >Login</Link>
+              </button>
+              <button className='border font-semibold p-2 rounded-md'>
+                <Link to={'/register'} >Register</Link>
+              </button>
+            </div>
+          : <DropdownNavbar />}
       </div>
     </nav>
   )

@@ -23,7 +23,6 @@ const Home = () => {
         <div className='grid gap-4 grid-cols-5 w-full py-2'>
           {
             products.map((item) => {
-              console.log(item)
               return(
               <CardProduct item={item} />
             )})

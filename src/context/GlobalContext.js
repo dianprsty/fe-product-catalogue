@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { notification} from 'antd'
 
 
 export const GlobalContext = createContext()
@@ -17,6 +18,9 @@ const getCategory = (products) => {
 export const GlobalProvider = ({children}) =>{
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [api, contextHolder] = notification.useNotification();
+  const [ctxHolder, setCtxHolder] = useState(contextHolder)
 
   const getAllProducts = () => {
     axios.get('https://arhandev.maisyah.id/api/final/products')
@@ -28,6 +32,7 @@ export const GlobalProvider = ({children}) =>{
 
   useEffect(()=>{
     getAllProducts()
+    // setCtxHolder(contextHolder)
   },[])
   return(
     <GlobalContext.Provider
@@ -36,7 +41,11 @@ export const GlobalProvider = ({children}) =>{
           products,
           categories,
           setProducts,
-          getAllProducts
+          getAllProducts,
+          isLoading,
+          setIsLoading,
+         ctxHolder,
+         setCtxHolder
         }
       }
     >
