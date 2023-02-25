@@ -1,7 +1,7 @@
-import { DeleteOutlined, EditOutlined, PlusCircleOutlined, PlusOutlined } from '@ant-design/icons'
-import { FloatButton, Input, Select } from 'antd'
+import { DeleteOutlined, EditOutlined, InboxOutlined, PlusOutlined } from '@ant-design/icons'
+import { FloatButton, Input, Result, Select } from 'antd'
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {GlobalContext} from '../context/GlobalContext'
 
 const SettingProduct = () => {
@@ -9,6 +9,8 @@ const SettingProduct = () => {
   const [displayProducts, setDisplayProducts] = useState(products)
   const [ category, setCategory ] = useState('all')
   const [ search, setSearch ] = useState('')
+  const navigate = useNavigate()
+  
 
   const filterProduct = () =>{
     let filteredProduct =  products.filter(item => {
@@ -54,7 +56,7 @@ const SettingProduct = () => {
             allowClear onChange={(e)=>handleChangeSearch(e)} placeholder="Search Product"
           />
           <Link className='flex items-center gap-2  py-2 px-3 rounded-md text-white font-bold bg-slate-900' 
-            to={'/create'} >
+            to={'/products/create'} >
               <PlusOutlined /> Create Product
           </Link>
         </div>
@@ -75,7 +77,17 @@ const SettingProduct = () => {
             </tr>
           </thead>
           <tbody className='text-sm '>
-            {displayProducts.map(item => {
+            {displayProducts.length === 0 
+              ? <tr>
+                  <td colSpan={9}>
+                    <Result
+                      icon={<InboxOutlined />}
+                      title="Not Found"
+                      subTitle="Sorry, the product you search does not exist."
+                    />
+                  </td>
+                </tr>
+              : displayProducts.map(item => {
               return (
                 <tr className='border-b-2' key={item.id}>
                   <td className='p-2 text-center'>
@@ -85,12 +97,18 @@ const SettingProduct = () => {
                   <td className='p-2 text-right'>Rp {item.harga_display}</td>
                   <td className='p-2 text-right'>{item.is_diskon ? "Rp "+item.harga_diskon_display : "-"}</td>
                   <td className='p-2 text-center'>{item.stock}</td>
-                  <td className='p-2 text-center'>{item.category}</td>
+                  <td className='p-2 text-center'>
+                    <span className='text-slate-900 bg-slate-200 p-1 rounded-md ml-2 border border-slate-500'>
+                      {item.category}
+                    </span>
+                  </td>
                   <td className='p-2 text-center'>{item.user.name}</td>
                   <td className='p-2 text-center'>{item.created_at}</td>
                   <td className='p-2 text-center flex flex-wrap gap-1 items-center'>
-                    <button className='pt-4 px-2 flex items-center gap-1 text-blue-500'><EditOutlined /> Edit</button>
-                    <button className='p-2 flex items-center gap-1 text-red-600'><DeleteOutlined /> Delete</button>
+                    <button onClick={()=> navigate(`/products/update/${item.id}`)}
+                      className='pt-4 px-2 flex items-center gap-1 text-blue-500'><EditOutlined /> Edit</button>
+                    <button 
+                      className='p-2 flex items-center gap-1 text-red-600'><DeleteOutlined /> Delete</button>
                   </td>
                 </tr>
               )

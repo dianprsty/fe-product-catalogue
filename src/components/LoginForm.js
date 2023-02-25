@@ -80,13 +80,14 @@ const LoginForm = () => {
                 type={'password'} name='password' placeholder='Password' />
               <p className='text-red-500'>{touched.password && errors.password}</p>
             </div>
-            <div className='w-full pt-2 gap-2 flex flex-col'>
+            <div className='w-full pt-2 gap-2 flex flex-col -mb-3'>
               <button type='submit' 
                 className='bg-slate-900 text-white font-bold p-2 w-full rounded-3xl'
                 >Login</button>
             </div>
             <p className='text-xs'>Don't have an account? 
               <Link to='/register' ><span className='text-blue-500'>  Register</span></Link>
+              <button type='reset'>reset</button>
             </p>
           </Form>
         )}

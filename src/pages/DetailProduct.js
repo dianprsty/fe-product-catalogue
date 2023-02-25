@@ -1,6 +1,8 @@
+import { Skeleton } from 'antd'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { GlobalContext } from '../context/GlobalContext'
 
 const getDiskonPercentage = (item) => {
   return Math.floor((item.harga - item.harga_diskon) / item.harga *100)
@@ -9,18 +11,21 @@ const getDiskonPercentage = (item) => {
 const DetailProduct = () => {
   const {id} = useParams()
   const [product, setProduct] =useState({})
+  const { isLoading, setIsLoading } = useContext(GlobalContext)
 
   useEffect(()=>{
-    console.log(id);
+    setIsLoading(true)
     axios.get(`https://arhandev.maisyah.id/api/final/products/${id}`)
       .then(res =>{
         setProduct(res.data.data)
       }).catch(err => {console.log(err)})
+      .finally(()=> setIsLoading(false))
   }, [id])
+
+  
   return (
     <div className='w-8/12 shadow-lg mx-auto flex py-10 border'>
-      {console.log(product)}
-      <div className='w-6/12 '>
+      {!isLoading ? <> <div className='w-6/12 '>
         <img 
          className='w-80 h-80 object-cover mx-auto rounded-lg'
          src={product.image_url} alt={product.name} />
@@ -48,7 +53,9 @@ const DetailProduct = () => {
           <p className='text-sm w-10/12 text-justify'>{product.description} </p>
         </div>
       </div>
-      
+      </>
+      : <Skeleton />
+      }     
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { FloatButton } from 'antd'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import CardProduct from '../components/CardProduct'
@@ -8,6 +9,7 @@ const Home = () => {
   const {products} = useContext(GlobalContext)
   return (
     <div className='w-10/12 mx-auto '>
+      <FloatButton.BackTop visibilityHeight={0} />
       <div className='w-full rounded-2xl overflow-hidden'>
         <CarrouselMain />
       </div>
@@ -20,7 +22,7 @@ const Home = () => {
             </button>
           </Link>
         </div>
-        <div className='grid gap-4 grid-cols-5 w-full py-2'>
+        <div className='grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 w-full py-2'>
           {
             products.map((item) => {
               return(

@@ -118,15 +118,12 @@ const RegisterForm = () => {
                 <p className='text-red-500'>{touched.password_confirmation && errors.password_confirmation}</p>
               </div>
             </div>
-            <p className='text-xs'>or 
-              <button type='reset' ><span className='text-blue-500'>  Login</span></button>
-            </p>
-            <div className='w-full pt-2 gap-2 flex flex-col'>
+            <div className='w-full -mb-3 flex flex-col'>
               <button type='submit' 
                 className='bg-slate-900 text-white font-bold p-2 w-full rounded-3xl'
-                >Login</button>
+                >Register</button>
             </div>
-            <p className='text-xs'>or 
+            <p className='text-xs'>Already have an account? 
               <Link to='/login' ><span className='text-blue-500'>  Login</span></Link>
             </p>
           </Form>

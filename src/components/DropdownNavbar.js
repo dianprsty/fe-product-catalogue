@@ -3,6 +3,7 @@ import { Avatar, Dropdown, notification, Space, } from 'antd'
 import{ DownOutlined, UserOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Link, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalContext';
+import axios from 'axios';
 
 
 
@@ -24,14 +25,22 @@ const Logout = () =>{
 
   const logout = () => {
     setIsLoading(true)
-    setTimeout(()=>{
-      setIsLoading(false)
-      localStorage.removeItem('token')
-      localStorage.removeItem('username')
-      navigate('/')
-      openNotificationWithIcon('info', 'Logout Successfully')
-    },1000)
-  }
+    let token = localStorage.getItem('token')
+    axios.post('https://arhandev.maisyah.id/api/final/logout',
+    {},
+    {headers: {Authorization: `Bearer ${token}`}})
+      .then(res =>{
+        localStorage.removeItem('token')
+        localStorage.removeItem('username')
+        navigate('/')
+        openNotificationWithIcon('info', res.data.info)
+      }).catch((err =>{
+        openNotificationWithIcon('error','Logout Failed', err.message)
+      })).finally(()=>{
+        setIsLoading(false)
+        setCtxHolder(contextHolder)
+      })
+    }
   return(
     <div className='flex items-center gap-3' onClick={logout}>
         <LogoutOutlined />

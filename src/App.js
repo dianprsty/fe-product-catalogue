@@ -12,6 +12,8 @@ import { useContext } from 'react';
 import { GlobalContext } from './context/GlobalContext';
 import { Spin } from 'antd';
 import ProtectedRoute from './wrapper/ProtectedRoute';
+import CreateProduct from './pages/CreateProduct';
+import UpdateProduct from './pages/UpdateProduct';
 
 function App() {
   const {isLoading, ctxHolder} = useContext(GlobalContext)
@@ -30,6 +32,8 @@ function App() {
             <Route element={<ProtectedRoute />} >
               <Route path='/setting' element={<SettingProduct />} />
             </Route>
+            <Route path='/products/create' element={<CreateProduct />} />
+            <Route path='/products/update/:id' element={<UpdateProduct />} />
           </Routes>
           <Footer />
         </BrowserRouter>
