@@ -14,6 +14,8 @@ import { Spin } from 'antd';
 import ProtectedRoute from './wrapper/ProtectedRoute';
 import CreateProduct from './pages/CreateProduct';
 import UpdateProduct from './pages/UpdateProduct';
+import GuestRoute from './wrapper/GuestRoute';
+import NotFound from './pages/NotFound';
 
 function App() {
   const {isLoading, ctxHolder} = useContext(GlobalContext)
@@ -27,13 +29,16 @@ function App() {
             <Route path='/' element={<Home/>} />
             <Route path='/catalog' element={<CatalogProduct/>} />
             <Route path='/product/:id' element={<DetailProduct />} />
-            <Route path='/login' element={<Login/>} />
-            <Route path='/register' element={<Register/>} />
+            <Route element={<GuestRoute/>} >
+              <Route path='/login' element={<Login/>} />
+              <Route path='/register' element={<Register/>} />
+            </Route>
             <Route element={<ProtectedRoute />} >
               <Route path='/setting' element={<SettingProduct />} />
+              <Route path='/products/create' element={<CreateProduct />} />
+              <Route path='/products/update/:id' element={<UpdateProduct />} />
             </Route>
-            <Route path='/products/create' element={<CreateProduct />} />
-            <Route path='/products/update/:id' element={<UpdateProduct />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -1,4 +1,4 @@
-import { notification, Select, Switch } from 'antd';
+import { notification, Select, Skeleton, Switch } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import axios from 'axios';
 import { Field, Form, Formik } from 'formik'
@@ -116,7 +116,7 @@ const ProductForm = ({type}) => {
   const productSchema = Yup.object({
     nama: Yup.string().required(),
     harga: Yup.number().required().min(1000),
-    harga_diskon : Yup.number().required(0),
+    harga_diskon : Yup.number().required().min(0),
     stock: Yup.number().required().min(1),
     category: Yup.string().required(),
     image_url:Yup.string().required().url(),
@@ -137,7 +137,7 @@ const ProductForm = ({type}) => {
           setValues
         }) => {
           return(
-            !isLoading && <Form >
+            isLoading ? <Skeleton/> : <Form >
               <div className='w-10/12 mx-auto p-5 grid grid-cols-1  lg:grid-cols-2'>
                 <div 
                   className='lg:w-6/12 p-1 flex flex-col gap-4'>
@@ -165,7 +165,7 @@ const ProductForm = ({type}) => {
                         onChange={(checked) => setValues({...values, is_diskon: checked})}
                       />
                     </div>
-                    {values.is_diskon  && <div className='flex flex-col gap-2 lg:w-96'>
+                    {!values.is_diskon ? null : <div className='flex flex-col gap-2 lg:w-96'>
                       <label>Discount Price</label>
                       <Field 
                         className='border border-slate-900 w-full h-9 px-2 -mb-2'
@@ -223,9 +223,9 @@ const ProductForm = ({type}) => {
                     <div className='flex flex-col gap-2 lg:w-96 '>
                       <button
                         type='submit'
-                        className='bg-slate-900 text-white w-full h-9 px-2'
+                        className='bg-slate-900 text-white w-full h-9 px-2 font-bold'
                       >
-                        Create Product
+                        {type==='create' ? 'Create Product' : 'Update Product'}
                       </button>
                     </div>
                 </div>

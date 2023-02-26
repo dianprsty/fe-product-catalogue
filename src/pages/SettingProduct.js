@@ -34,7 +34,7 @@ const SettingProduct = () => {
   }
 
   return (
-    <div className='w-10/12 mx-auto'>
+    <div className='w-10/12 mx-auto '>
       <FloatButton.BackTop visibilityHeight={0} />
       <div className='flex flex-col'>
         <p className='text-3xl font-bold py-5'>Setting Product</p>
@@ -61,7 +61,7 @@ const SettingProduct = () => {
           </Link>
         </div>
       </div>
-      <div className='w-full shadow-lg'>
+      <div className='w-full shadow-lg bg-white'>
         <table className='table-fixed w-full' >
           <thead className='bg-slate-900 text-white'>
             <tr>
@@ -93,12 +93,12 @@ const SettingProduct = () => {
                   <td className='p-2 text-center'>
                     <img className='w-24 h-24 rounded-lg' src={item.image_url} alt={item.name} />
                   </td>
-                  <td className='p-2 text-left'>{item.nama}</td>
+                  <td className='p-2 text-left font-semibold'>{item.nama}</td>
                   <td className='p-2 text-right'>Rp {item.harga_display}</td>
                   <td className='p-2 text-right'>{item.is_diskon ? "Rp "+item.harga_diskon_display : "-"}</td>
                   <td className='p-2 text-center'>{item.stock}</td>
                   <td className='p-2 text-center'>
-                    <span className='text-slate-900 bg-slate-200 p-1 rounded-md ml-2 border border-slate-500'>
+                    <span className='text-blue-900 bg-blue-200 p-1 rounded-md ml-2 border border-blue-500'>
                       {item.category}
                     </span>
                   </td>
