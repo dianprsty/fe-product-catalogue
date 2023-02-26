@@ -37,7 +37,6 @@ const ProductForm = ({type}) => {
       setIsLoading(true)
       axios.get(`https://arhandev.maisyah.id/api/final/products/${id}`)
         .then((res) => {
-          // let data = res.data.data
           setProduct((state)=>({
             ...state,
             'nama': res.data.data.nama,
@@ -50,8 +49,7 @@ const ProductForm = ({type}) => {
             'image_url': res.data.data.image_url
           }))
         }).catch(err => console.log(err))
-        .finally(()=>{
-            console.log(product);
+          .finally(()=>{
           setIsLoading(false)
         })
     }

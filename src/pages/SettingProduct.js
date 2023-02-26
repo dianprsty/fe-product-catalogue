@@ -1,7 +1,8 @@
-import { DeleteOutlined, EditOutlined, InboxOutlined, PlusOutlined } from '@ant-design/icons'
+import { DeleteFilled, EditFilled, EyeFilled, InboxOutlined, PlusOutlined } from '@ant-design/icons'
 import { FloatButton, Input, Result, Select } from 'antd'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import DeleteProduct from '../components/DeleteProduct'
 import {GlobalContext} from '../context/GlobalContext'
 
 const SettingProduct = () => {
@@ -98,17 +99,22 @@ const SettingProduct = () => {
                   <td className='p-2 text-right'>{item.is_diskon ? "Rp "+item.harga_diskon_display : "-"}</td>
                   <td className='p-2 text-center'>{item.stock}</td>
                   <td className='p-2 text-center'>
-                    <span className='text-blue-900 bg-blue-200 p-1 rounded-md ml-2 border border-blue-500'>
+                    <span className='text-green-900 bg-green-200 p-1 rounded-md ml-2 border border-green-500'>
                       {item.category}
                     </span>
                   </td>
                   <td className='p-2 text-center'>{item.user.name}</td>
                   <td className='p-2 text-center'>{item.created_at}</td>
                   <td className='p-2 text-center flex flex-wrap gap-1 items-center'>
+                  <button onClick={()=> navigate(`/product/${item.id}`)}
+                      className='pt-4 px-2 flex items-center gap-1 text-blue-500 font-medium'>
+                      <EyeFilled /> View
+                    </button>
                     <button onClick={()=> navigate(`/products/update/${item.id}`)}
-                      className='pt-4 px-2 flex items-center gap-1 text-blue-500'><EditOutlined /> Edit</button>
-                    <button 
-                      className='p-2 flex items-center gap-1 text-red-600'><DeleteOutlined /> Delete</button>
+                      className='px-2 -mb-2 flex items-center gap-1 text-green-500 font-medium'>
+                      <EditFilled /> Edit
+                    </button>
+                    <DeleteProduct id={item.id} />
                   </td>
                 </tr>
               )

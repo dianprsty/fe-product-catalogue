@@ -1,6 +1,6 @@
 import { Carousel } from 'antd';
 const contentStyle = {
-  height: '200px',
+  height: '400px',
   color: '#fff',
   lineHeight: '160px',
   textAlign: 'center',
@@ -8,10 +8,21 @@ const contentStyle = {
 };
 const CarrouselMain = () => (
   <Carousel autoplay>
-    <div>
-      <h3 style={contentStyle}>1</h3>
+    <div className='h-96'>
+      <img 
+        className='object-cover object-center h-96 w-full aspect-video'
+        src={'/images/1.png'} alt='' />
     </div>
-    <div>
+    <img 
+        className='object-cover object-center h-96 w-full aspect-video'
+        src={'/images/2.png'} alt='' />
+    <img 
+        className='object-cover object-center h-96 w-full aspect-video'
+        src={'/images/3.png'} alt='' />
+    <img 
+        className='object-cover object-center h-96 w-full aspect-video'
+        src={'/images/4.png'} alt='' />
+    {/* <div>
       <h3 style={contentStyle}>2</h3>
     </div>
     <div>
@@ -19,7 +30,7 @@ const CarrouselMain = () => (
     </div>
     <div>
       <h3 style={contentStyle}>4</h3>
-    </div>
+    </div> */}
   </Carousel>
 );
 export default CarrouselMain;

@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className='bg-slate-900 text-white font-semibold py-3 md:px-28 fixed bottom-0 w-full flex justify-between'>
+    <div 
+      className='bg-slate-900 text-white font-semibold py-3 md:px-28 
+        fixed bottom-0 z-50 w-full flex justify-between items-center'>
       <p>&copy; 2023 | Dian Prasetyo</p>
       <div className='flex gap-5 text-xl items-center'>
-        <p className='text-sm al'>About Me :</p>
+        <p className='text-sm  hidden lg:flex'>About Me :</p>
         <Link to={'https://www.linkedin.com/in/dianprasetyo-2021/'} target={'_blank'} ><LinkedinOutlined /></Link>
         <Link to={'mailto:dprasmail@gmail.com'} target='_blank' ><MailOutlined /></Link>
         <Link to={'https://gitlab.com/dianp/final-project-reactjs-karyawan-b41'} target='_blank' ><GitlabOutlined /></Link>

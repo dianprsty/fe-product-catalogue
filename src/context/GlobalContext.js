@@ -22,8 +22,8 @@ export const GlobalProvider = ({children}) =>{
   const [api, contextHolder] = notification.useNotification();
   const [ctxHolder, setCtxHolder] = useState(contextHolder)
 
-  const getAllProducts = () => {
-    axios.get('https://arhandev.maisyah.id/api/final/products')
+  const getAllProducts = async() => {
+    await axios.get('https://arhandev.maisyah.id/api/final/products')
       .then(res => {
         setProducts(res.data.data)
         setCategories(getCategory(res.data.data))
@@ -44,8 +44,8 @@ export const GlobalProvider = ({children}) =>{
           getAllProducts,
           isLoading,
           setIsLoading,
-         ctxHolder,
-         setCtxHolder
+          ctxHolder,
+          setCtxHolder
         }
       }
     >
