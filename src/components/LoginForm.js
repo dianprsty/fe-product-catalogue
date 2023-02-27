@@ -61,14 +61,14 @@ const LoginForm = () => {
           errors,
           touched
         }) => (
-          <Form className='w-6/12 mx-auto flex flex-col gap-4 pt-10'>
+          <Form className='w-full lg:w-96 mx-auto lg:ml-24 flex flex-col gap-4 py-8 lg:absolute bg-white px-4 md:px-12 shadow-sm border'>
             <div className='mb-4'>
-              <h1 className='text-center text-4xl font-bold text-slate-900'>Login</h1>
+              <h1 className='text-center text-4xl font-bold text-blue-500'>Login</h1>
             </div>
             <div className='flex flex-col gap-2'>
               <label>Email</label>
               <Field
-                className='border border-slate-900 rounded-lg h-9 px-2'
+                className='border border-blue-500 rounded-lg h-9 px-2'
                 type={'email'} name='email' placeholder='Email' />
               <p className='text-red-500'>{touched.email && errors.email}</p>
 
@@ -76,18 +76,17 @@ const LoginForm = () => {
             <div className='flex flex-col gap-2'>
               <label>Password</label>
               <Field
-                className='border border-slate-900 rounded-lg h-9 px-2'
+                className='border border-blue-500 rounded-lg h-9 px-2'
                 type={'password'} name='password' placeholder='Password' />
               <p className='text-red-500'>{touched.password && errors.password}</p>
             </div>
             <div className='w-full pt-2 gap-2 flex flex-col -mb-3'>
               <button type='submit' 
-                className='bg-slate-900 text-white font-bold p-2 w-full rounded-3xl'
+                className='bg-blue-500 text-white font-bold p-2 w-full rounded-3xl'
                 >Login</button>
             </div>
             <p className='text-xs'>Don't have an account? 
               <Link to='/register' ><span className='text-blue-500'>  Register</span></Link>
-              <button type='reset'>reset</button>
             </p>
           </Form>
         )}

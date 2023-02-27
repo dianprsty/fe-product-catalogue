@@ -1,4 +1,4 @@
-import { DeleteFilled, EditFilled, EyeFilled, InboxOutlined, PlusOutlined } from '@ant-design/icons'
+import { EditFilled, EyeFilled, InboxOutlined } from '@ant-design/icons'
 import { FloatButton, Input, Result, Select } from 'antd'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -38,10 +38,10 @@ const SettingProduct = () => {
     <div className='w-10/12 mx-auto '>
       <FloatButton.BackTop visibilityHeight={0} />
       <div className='flex flex-col'>
-        <p className='text-3xl font-bold py-5'>Setting Product</p>
+        <p className='text-3xl font-bold text-blue-500 pt-5'>Setting Product</p>
         <div className='flex gap-4 items-center justify-end mb-3'>
           <Select
-            defaultValue="all" className='w-32 border rounded-md border-slate-900 hover:border-blue-400'
+            defaultValue="all" className='w-32 border rounded-md  hover:border-blue-400'
             onChange={handleChangeCategory}
             options={[
               { value: 'all', label:'All' },
@@ -56,15 +56,15 @@ const SettingProduct = () => {
             className='w-40 border-slate-900 border'
             allowClear onChange={(e)=>handleChangeSearch(e)} placeholder="Search Product"
           />
-          <Link className='flex items-center gap-2  py-2 px-3 rounded-md text-white font-bold bg-slate-900' 
+          <Link className='flex items-center justify-center gap-1 px-3 rounded-md text-white bg-blue-500 font-bold ' 
             to={'/products/create'} >
-              <PlusOutlined /> Create Product
+              <span className='text-2xl'>+</span> Create Product
           </Link>
         </div>
       </div>
       <div className='w-full shadow-lg bg-white'>
         <table className='table-fixed w-full' >
-          <thead className='bg-slate-900 text-white'>
+          <thead className='bg-blue-500 text-white'>
             <tr>
               <th className='p-3'>Image</th>
               <th className='p-3'>Product Name</th>
@@ -92,7 +92,7 @@ const SettingProduct = () => {
               return (
                 <tr className='border-b-2' key={item.id}>
                   <td className='p-2 text-center'>
-                    <img className='w-24 h-24 rounded-lg' src={item.image_url} alt={item.name} />
+                    <img className='w-24 h-24 rounded-lg aspect-square object-cover' src={item.image_url} alt={item.name} />
                   </td>
                   <td className='p-2 text-left font-semibold'>{item.nama}</td>
                   <td className='p-2 text-right'>Rp {item.harga_display}</td>

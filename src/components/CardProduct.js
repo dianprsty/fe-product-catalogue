@@ -12,9 +12,9 @@ const CardProduct = ({item}) => {
       hover:scale-105 transition duration-300 ease-in-out
       '>
       <img 
-        className='h-56 w-full object-cover object-center aspect-square'
+        className='max-h-56 w-full object-cover object-center aspect-square'
         src={item.image_url} alt={item.nama} />
-      <div className='p-3 flex flex-col gap-2'>
+      <div className='p-3 flex flex-col'>
         <p 
           className='text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap text-slate-900'>
             {item.nama}
@@ -22,7 +22,7 @@ const CardProduct = ({item}) => {
         {item.is_diskon === 1 && <p className='font-semibold text-xl text-red-600'>Rp {item.harga_diskon_display}</p>}
         {
           item.is_diskon 
-            ? <div className='flex text-xs gap-2 -mt-2'>
+            ? <div className='flex text-xs gap-2'>
                 <p className='p-1 rounded-md bg-red-300 text-red-700'>{getDiskonPercentage(item)}%</p>
                 <p className='line-through text-slate-900'>Rp {item.harga_display}</p>
               </div>

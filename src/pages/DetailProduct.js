@@ -24,7 +24,7 @@ const DetailProduct = () => {
 
   
   return (
-    <div className='w-8/12 shadow-lg mx-auto flex py-10 border'>
+    <div className='w-8/12 shadow-lg mx-auto flex py-10 border lg:mt-10 bg-white'>
       {!isLoading ? <> <div className='w-6/12 '>
         <img 
          className='w-80 h-80 object-cover mx-auto rounded-lg'
@@ -34,7 +34,7 @@ const DetailProduct = () => {
         { product.is_diskon === 1 && <p 
           className='p-2 pr-10 bg-red-300 text-red-700 self-end font-semibold'
         >{getDiskonPercentage(product)}% Off</p>}
-        <p className='text-2xl font-bold'>{product.nama}</p>
+        <p className='text-2xl font-bold w-10/12'>{product.nama}</p>
         <p className='text-sm py-2'>
           Category  
           <span className='text-xs text-green-600 bg-green-200 p-1 rounded-md ml-2 border border-green-500'>{product.category}</span>
@@ -50,7 +50,7 @@ const DetailProduct = () => {
         <p className='text-sm'>Stock : <span className='font-semibold'>{product.stock}</span></p>
         <div>
           <p className='text-lg font-semibold'>Description</p>
-          <p className='text-sm w-10/12 text-justify'>{product.description} </p>
+          <p className='text-sm w-10/12 text-justify'>{product.description ? product.description : '-'} </p>
         </div>
       </div>
       </>

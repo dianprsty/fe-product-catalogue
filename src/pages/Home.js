@@ -1,3 +1,4 @@
+import { ArrowRightOutlined } from '@ant-design/icons'
 import { FloatButton } from 'antd'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -26,14 +27,14 @@ const Home = () => {
       </div>
       <div className='mt-4'>
         <div className='flex justify-between pr-10 mt-10 mb-5'>
-          <h1 className='font-bold text-3xl'>Our Product</h1>
+          <h1 className='font-bold text-blue-500 text-xl lg:text-3xl'>Our New Product</h1>
           <Link to={'/catalog'} >
-            <button className='bg-slate-900 text-white rounded-md p-2 hover:bg-slate-800' >
-            See More
+            <button className='text-base  flex  items-center gap-2' >
+            <p>See More Product</p> <ArrowRightOutlined />
             </button>
           </Link>
         </div>
-        <div className='grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 w-full py-2'>
+        <div className='grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-rows-1 w-full py-2'>
           { isCardLoading ? <CardProductLoading/> :
             products.slice(0,5).map((item) => {
               return(
@@ -47,16 +48,16 @@ const Home = () => {
           return(
             <div className='mt-4'>
               <div className='flex justify-between pr-10 mt-10 mb-5'>
-                <h1 className='font-bold text-3xl'>Category {category}</h1>
-                {/* <Link to={'/catalog'} >
-                  <button className='bg-slate-900 text-white rounded-md p-2 hover:bg-slate-800' >
-                  See More
+                <h1 className='font-bold text-blue-500 text-xl lg:text-3xl'>Category {category}</h1>
+                <Link to={'/catalog'} >
+                  <button className='text-base  flex  items-center gap-2' >
+                  <p>See More Product</p> <ArrowRightOutlined />
                   </button>
-                </Link> */}
+                </Link>
               </div>
-              <div className='grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 w-full py-2'>
-                {
-                  products.filter((el)=> (el.category === category)).map((item) => {
+              <div className='grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full py-2'>
+                { isCardLoading ? <CardProductLoading/> :
+                  products.filter((el)=> (el.category === category)).slice(0,5).map((item) => {
                     return(
                     <CardProduct item={item} />
                   )})

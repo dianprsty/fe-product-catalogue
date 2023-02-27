@@ -14,9 +14,9 @@ const ProductForm = ({type}) => {
     {
       "nama": "",
       "is_diskon": false,
-      "harga": 0,
-      "harga_diskon": 0,
-      "stock": 0,
+      "harga": '0',
+      "harga_diskon": '0',
+      "stock": '0',
       "description": "",
       "category": "",
       "image_url": ""
@@ -118,7 +118,7 @@ const ProductForm = ({type}) => {
     stock: Yup.number().required().min(1),
     category: Yup.string().required(),
     image_url:Yup.string().required().url(),
-    description: Yup.string().required()
+    // description: Yup.string().required()
   })
   return (
     <>
@@ -134,6 +134,7 @@ const ProductForm = ({type}) => {
           values,
           setValues
         }) => {
+          console.log(errors);
           return(
             isLoading ? <Skeleton/> : <Form >
               <div className='w-10/12 mx-auto p-5 grid grid-cols-1  lg:grid-cols-2'>
@@ -142,7 +143,7 @@ const ProductForm = ({type}) => {
                     <div className='flex flex-col gap-2 lg:w-96'>
                       <label>Product Name</label>
                       <Field 
-                        className='border border-slate-900 w-full h-9 px-2 -mb-2'
+                        className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-2'
                         type='text' name='nama' placeholder='Product Name'
                       />
                       <p className='text-red-500 relative'>{touched.nama && errors.nama}</p>
@@ -150,7 +151,7 @@ const ProductForm = ({type}) => {
                     <div className='flex flex-col gap-2 lg:w-96'>
                       <label>Price</label>
                       <Field 
-                        className='border border-slate-900 w-full h-9 px-2 -mb-2'
+                        className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-2'
                         type='number' name='harga' placeholder='Price'
                       />
                       <p className='text-red-500'>{touched.harga && errors.harga}</p>
@@ -166,7 +167,7 @@ const ProductForm = ({type}) => {
                     {!values.is_diskon ? null : <div className='flex flex-col gap-2 lg:w-96'>
                       <label>Discount Price</label>
                       <Field 
-                        className='border border-slate-900 w-full h-9 px-2 -mb-2'
+                        className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-2'
                         type='number' name='harga_diskon' placeholder='Discount Price'
                       />
                       <p className='text-red-500'>{touched.harga_diskon && errors.harga_diskon}</p>
@@ -174,7 +175,7 @@ const ProductForm = ({type}) => {
                     <div className='flex flex-col gap-2 lg:w-96'>
                       <label>Stock</label>
                       <Field 
-                        className='border border-slate-900 w-full h-9 px-2 -mb-2'
+                        className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-2'
                         type='number' name='stock' placeholder='Stock'
                       />
                       <p className='text-red-500'>{touched.stock && errors.stock}</p>
@@ -186,7 +187,7 @@ const ProductForm = ({type}) => {
                     <div className='flex flex-col gap-2 lg:w-96 '>
                       <label>Image Url</label>
                       <Field 
-                        className='border border-slate-900 w-full h-9 px-2 -mb-4'
+                        className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-4'
                         type='text' name='image_url' placeholder='Image Url'
                       />
                     </div>
@@ -194,7 +195,7 @@ const ProductForm = ({type}) => {
                     <div className='flex flex-col gap-2 lg:w-96 '>
                       <label>Category</label>
                       <Select
-                        value={values.category} className='border border-slate-900 w-full h-9 px-2 -mb-4'
+                        value={values.category} className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-4'
                         bordered={false} 
                         onChange={(value)=>{setValues({...values, category:value})}}
                         options={[
@@ -212,16 +213,16 @@ const ProductForm = ({type}) => {
                       <label>Description</label>
                       <TextArea 
                         style={{ height: 100, resize: 'none' }}
-                        className='border border-slate-900 w-full px-2 -mb-4'
+                        className='border rounded-md border-blue-500 w-full px-2 -mb-4'
                         value={values.description} placeholder='Product Description'
                         onChange={(e)=>{setValues({...values, description:e.target.value })}}
                       />
                     </div>
                     <p className='text-red-500'>{touched.description && errors.description}</p>
-                    <div className='flex flex-col gap-2 lg:w-96 '>
+                    <div className='flex flex-col gap-2 lg:w-96'>
                       <button
                         type='submit'
-                        className='bg-slate-900 text-white w-full h-9 px-2 font-bold'
+                        className='bg-blue-500 border-2 border-blue-500 text-white w-full h-9 px-2 font-bold'
                       >
                         {type==='create' ? 'Create Product' : 'Update Product'}
                       </button>

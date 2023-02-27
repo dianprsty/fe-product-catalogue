@@ -37,7 +37,7 @@ const DeleteProduct = ({id}) => {
     <>
       <Popconfirm
         title="Delete the task"
-        description="Are you sure to delete this task?"
+        description="Are you sure to delete this product ?"
         placement='leftBottom'
         onConfirm={confirm}
         okText="Yes"
