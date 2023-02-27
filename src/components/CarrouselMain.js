@@ -8,11 +8,9 @@ const contentStyle = {
 };
 const CarrouselMain = () => (
   <Carousel autoplay>
-    <div className='h-96'>
-      <img 
-        className='object-cover object-center h-96 w-full aspect-video'
-        src={'/images/1.png'} alt='' />
-    </div>
+    <img 
+      className='object-cover object-center h-96 w-full aspect-video'
+      src={'/images/1.png'} alt='' />
     <img 
         className='object-cover object-center h-96 w-full aspect-video'
         src={'/images/2.png'} alt='' />

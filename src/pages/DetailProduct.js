@@ -39,7 +39,7 @@ const DetailProduct = () => {
           Category  
           <span className='text-xs text-green-600 bg-green-200 p-1 rounded-md ml-2 border border-green-500'>{product.category}</span>
         </p>
-        {product.is_diskon === 1 && <p className='font-bold text-3xl'>Rp {product.harga_diskon_display}</p>}
+        {product.is_diskon === 1 && <p className='font-bold text-3xl text-red-600'>Rp {product.harga_diskon_display}</p>}
         {
           product.is_diskon 
             ? <div className='flex text-sm gap-2'>

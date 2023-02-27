@@ -1,43 +1,39 @@
-import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
-import { GlobalContext } from '../context/GlobalContext';
 import DropdownNavbar from './DropdownNavbar';
 
 
 const Navbar = () => {
-  const {categories} = useContext(GlobalContext)
   return (
     <nav 
-      className='fixed flex-auto top-0 px-40 flex start w-full items-center 
+      className='lg:fixed mb-8 flex-auto top-0 px-40 flex flex-col sm:flex-row start w-full items-center 
         justify-between shadow-md cursor-pointer bg-white z-10'>
-      <div className='w-2/12 hover:bg-blue-500 p-5 '>
-        <img src="/images/letter-logo.png" alt='logo' className='w-full mx-auto' />
+      <div className='w-40'>
+        <Link to='/'>
+          <img src="/images/new-letter-logo-transparent.png" alt='logo' className='w-full mx-auto' />
+          </Link>
       </div>
-      <ul className='flex w-8/12 gap-4 items-center justify-end py-5 m-0 mr-6'>
-        <li>
-          <select>
-            {
-              categories.map((item, i) => (
-                <option value={item} key={i}>{item}</option>
-              ))
-            }
-          </select>
-        </li>
-        <li className='hover:text-blue-500'><Link to='/'>Home</Link></li>
-        <li className='hover:text-blue-500'><Link to='catalog'>Product</Link></li>
+      <ul className='flex items-center justify-end  m-0 mr-6'>
+        <Link to='/'><li className='font-semibold text-blue-900 p-5  hover:text-blue-500'>Home</li></Link>
+        <Link to='catalog'><li className='font-semibold text-blue-900 p-5  hover:text-blue-500'>Product</li></Link>
+        <li className='font-semibold hover:text-blue-500'>
+          <div className=' flex p-5' >
+            {localStorage.getItem('token') === null
+              ? <div className='flex gap-2'>
+                  <Link to={'/login'} >
+                    <button className='bg-blue-500 font-semibold text-white p-2 rounded-md'>
+                    Login
+                    </button>
+                    </Link>
+                  <Link to={'/register'} >
+                    <button className='border text-blue-500 font-semibold p-2 rounded-md'>
+                      Register
+                    </button>
+                    </Link>
+                </div>
+              : <DropdownNavbar />}
+          </div>
+        </li>        
       </ul>
-      <div className='w-2/12 flex p-5' >
-        {localStorage.getItem('token') === null
-          ? <div className='flex gap-2'>
-              <button className='bg-slate-900 font-semibold text-white p-2 rounded-md'>
-                <Link to={'/login'} >Login</Link>
-              </button>
-              <button className='border font-semibold p-2 rounded-md'>
-                <Link to={'/register'} >Register</Link>
-              </button>
-            </div>
-          : <DropdownNavbar />}
-      </div>
     </nav>
   )
 }

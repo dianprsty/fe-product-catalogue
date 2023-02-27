@@ -80,11 +80,11 @@ const DropdownNavbar = () => {
             <Space>
             <Avatar
               style={{
-                backgroundColor: '#87d068',
+                backgroundColor: '#3b82f6',
               }}
               icon={<UserOutlined />}
             />
-              <p className='font-sans text-base'>Hi, {localStorage.getItem('username')}</p>
+              <p className='font-sans font-semibold'>Hi, {localStorage.getItem('username')}</p>
               <DownOutlined />
             </Space>
         </Dropdown>
