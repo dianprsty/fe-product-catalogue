@@ -8,7 +8,7 @@ import * as Yup from 'yup'
 import { GlobalContext } from '../context/GlobalContext'
 
 const RegisterForm = () => {
-
+  // eslint-disable-next-line
   const [registerData, setRegisterData] = useState(
     {
       "email": "",
@@ -32,7 +32,7 @@ const RegisterForm = () => {
   };
   useEffect(()=>{
     setCtxHolder(contextHolder)
-  },[])
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 
 
   const handleSubmit = (values) =>{

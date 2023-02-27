@@ -15,7 +15,7 @@ const CatalogProduct = () => {
     .finally(()=>{
       setIsCardLoading(false)
     })
-  },[])
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className='w-10/12 mx-auto '>

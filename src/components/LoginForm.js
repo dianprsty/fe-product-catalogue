@@ -42,7 +42,7 @@ const LoginForm = () => {
     
     useEffect(()=>{
       setCtxHolder(contextHolder)
-    },[])
+    },[])// eslint-disable-line react-hooks/exhaustive-deps
 
 
   const loginSchema = Yup.object({

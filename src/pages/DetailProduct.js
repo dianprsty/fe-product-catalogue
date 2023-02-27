@@ -20,7 +20,7 @@ const DetailProduct = () => {
         setProduct(res.data.data)
       }).catch(err => {console.log(err)})
       .finally(()=> setIsLoading(false))
-  }, [id])
+  }, [id])// eslint-disable-line react-hooks/exhaustive-deps
 
   
   return (

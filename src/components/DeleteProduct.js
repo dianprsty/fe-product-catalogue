@@ -17,7 +17,7 @@ const DeleteProduct = ({id}) => {
 
   useEffect(()=>{
     setCtxHolder(contextHolder)
-  },[])
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   const confirm = () => {
     setIsLoading(true)

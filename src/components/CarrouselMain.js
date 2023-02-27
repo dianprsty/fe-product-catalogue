@@ -1,11 +1,6 @@
 import { Carousel } from 'antd';
-const contentStyle = {
-  height: '400px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
+
+
 const CarrouselMain = () => (
   <Carousel autoplay>
     <img 

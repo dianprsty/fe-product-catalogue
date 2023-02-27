@@ -48,13 +48,14 @@ const ProductForm = ({type}) => {
             'category': res.data.data.category,
             'image_url': res.data.data.image_url
           }))
-        }).catch(err => console.log(err))
-          .finally(()=>{
+        }).catch(() => {
+        navigate('/')
+        }).finally(()=>{
           setIsLoading(false)
         })
     }
     setCtxHolder(contextHolder)
-  },[id])
+  },[id])// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = (values) => {
     setIsLoading(true)

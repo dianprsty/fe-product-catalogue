@@ -21,7 +21,7 @@ const Logout = () =>{
 
   useEffect(()=>{
     setCtxHolder(contextHolder)
-  },[])
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   const logout = () => {
     setIsLoading(true)
