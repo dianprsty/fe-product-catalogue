@@ -35,7 +35,9 @@ const Logout = () =>{
         navigate('/')
         openNotificationWithIcon('info', res.data.info)
       }).catch((err =>{
-        openNotificationWithIcon('error','Logout Failed', err.message)
+        openNotificationWithIcon('info', 'Logout', "Now, you're logout")
+        localStorage.clear()
+        navigate('/login')
       })).finally(()=>{
         setIsLoading(false)
         setCtxHolder(contextHolder)

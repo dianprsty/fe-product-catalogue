@@ -26,14 +26,12 @@ const LoginForm = () => {
     setIsLoading(true)
     axios.post('https://arhandev.maisyah.id/api/final/login', values)
       .then(res => {
-        console.log(res.data.info);
         localStorage.setItem('token', res.data.data.token)
         localStorage.setItem('username', res.data.data.user.username)
         navigate('/')
         openNotificationWithIcon('success', 'Success', res.data.info)
   }).catch(err => {
         openNotificationWithIcon('error', 'Login Failed', err.response.data.info)
-        
       }).finally(()=>{
         setIsLoading(false)
         setCtxHolder(contextHolder)
@@ -46,8 +44,8 @@ const LoginForm = () => {
 
 
   const loginSchema = Yup.object({
-    email: Yup.string().email().required(),
-    password: Yup.string().required()
+    email: Yup.string().email('Please input correct email format').required('Please input your email'),
+    password: Yup.string().required('Please input your password')
   })
 
   return (
@@ -66,7 +64,7 @@ const LoginForm = () => {
               <h1 className='text-center text-4xl font-bold text-blue-500'>Login</h1>
             </div>
             <div className='flex flex-col gap-2'>
-              <label>Email</label>
+              <label>Email<span className='text-red-500'>*</span></label>
               <Field
                 className='border border-blue-500 rounded-lg h-9 px-2'
                 type={'email'} name='email' placeholder='Email' />
@@ -74,7 +72,7 @@ const LoginForm = () => {
 
             </div>
             <div className='flex flex-col gap-2'>
-              <label>Password</label>
+              <label>Password<span className='text-red-500'>*</span></label>
               <Field
                 className='border border-blue-500 rounded-lg h-9 px-2'
                 type={'password'} name='password' placeholder='Password' />

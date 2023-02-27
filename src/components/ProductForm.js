@@ -81,6 +81,10 @@ const ProductForm = ({type}) => {
         openNotificationWithIcon('success', 'Success', res.data.info)
       }).catch(err => {
         openNotificationWithIcon('error', 'Failed', err.response.data.info)
+        if(!err.response.data.info){
+          localStorage.clear()
+          navigate('/login')
+        } 
       }).finally(()=>{
         setIsLoading(false)
       })
@@ -106,6 +110,10 @@ const ProductForm = ({type}) => {
         openNotificationWithIcon('success', 'Success', res.data.info)
       }).catch(err => {
         openNotificationWithIcon('error', 'Failed', err.response.data.info)
+        if(!err.response.data.info){
+          localStorage.clear()
+          navigate('/login')
+        } 
       }).finally(()=>{
         setIsLoading(false)
       })
@@ -113,12 +121,12 @@ const ProductForm = ({type}) => {
   }
 
   const productSchema = Yup.object({
-    nama: Yup.string().required(),
-    harga: Yup.number().required().min(1000),
-    harga_diskon : Yup.number().required().min(0),
-    stock: Yup.number().required().min(1),
-    category: Yup.string().required(),
-    image_url:Yup.string().required().url(),
+    nama: Yup.string().required("Please input Product Name"),
+    harga: Yup.number().required("Please input Price").min(1000),
+    harga_diskon : Yup.number().required("Please input Discount Price").min(0),
+    stock: Yup.number().required("Please input Stock").min(1),
+    category: Yup.string().required("Please select Category"),
+    image_url:Yup.string().required("Please input Image Url").url(),
     // description: Yup.string().required()
   })
   return (
@@ -135,14 +143,13 @@ const ProductForm = ({type}) => {
           values,
           setValues
         }) => {
-          console.log(errors);
           return(
             isLoading ? <Skeleton/> : <Form >
               <div className='w-10/12 mx-auto p-5 grid grid-cols-1  lg:grid-cols-2'>
                 <div 
                   className='lg:w-6/12 p-1 flex flex-col gap-4'>
                     <div className='flex flex-col gap-2 lg:w-96'>
-                      <label>Product Name</label>
+                      <label>Product Name<span className='text-red-500'>*</span></label>
                       <Field 
                         className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-2'
                         type='text' name='nama' placeholder='Product Name'
@@ -150,7 +157,7 @@ const ProductForm = ({type}) => {
                       <p className='text-red-500 relative'>{touched.nama && errors.nama}</p>
                     </div>
                     <div className='flex flex-col gap-2 lg:w-96'>
-                      <label>Price</label>
+                      <label>Price<span className='text-red-500'>*</span></label>
                       <Field 
                         className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-2'
                         type='number' name='harga' placeholder='Price'
@@ -166,7 +173,7 @@ const ProductForm = ({type}) => {
                       />
                     </div>
                     {!values.is_diskon ? null : <div className='flex flex-col gap-2 lg:w-96'>
-                      <label>Discount Price</label>
+                      <label>Discount Price<span className='text-red-500'>*</span></label>
                       <Field 
                         className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-2'
                         type='number' name='harga_diskon' placeholder='Discount Price'
@@ -174,7 +181,7 @@ const ProductForm = ({type}) => {
                       <p className='text-red-500'>{touched.harga_diskon && errors.harga_diskon}</p>
                     </div>}
                     <div className='flex flex-col gap-2 lg:w-96'>
-                      <label>Stock</label>
+                      <label>Stock<span className='text-red-500'>*</span></label>
                       <Field 
                         className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-2'
                         type='number' name='stock' placeholder='Stock'
@@ -186,7 +193,7 @@ const ProductForm = ({type}) => {
                 <div 
                   className='lg:w-6/12 p-1 flex flex-col gap-4 '>
                     <div className='flex flex-col gap-2 lg:w-96 '>
-                      <label>Image Url</label>
+                      <label>Image Url<span className='text-red-500'>*</span></label>
                       <Field 
                         className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-4'
                         type='text' name='image_url' placeholder='Image Url'
@@ -194,7 +201,7 @@ const ProductForm = ({type}) => {
                     </div>
                     <p className='text-red-500'>{touched.image_url && errors.image_url}</p>
                     <div className='flex flex-col gap-2 lg:w-96 '>
-                      <label>Category</label>
+                      <label>Category<span className='text-red-500'>*</span></label>
                       <Select
                         value={values.category} className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-4'
                         bordered={false} 

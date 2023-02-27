@@ -24,13 +24,14 @@ const DetailProduct = () => {
 
   
   return (
-    <div className='w-8/12 shadow-lg mx-auto flex py-10 border lg:mt-10 bg-white'>
-      {!isLoading ? <> <div className='w-6/12 '>
+    <div className='md:w-8/12 shadow-lg mx-auto flex lg:flex-row flex-col 
+      py-10 border lg:mt-10 bg-white'>
+      {!isLoading ? <> <div className='lg:w-6/12 w-[400px] justify-center'>
         <img 
          className='w-80 h-80 object-cover mx-auto rounded-lg'
          src={product.image_url} alt={product.name} />
       </div>
-      <div className='flex flex-col gap-2 w-6/12'>
+      <div className='flex flex-col gap-2 lg:w-6/12 w-full px-20 lg:px-0'>
         { product.is_diskon === 1 && <p 
           className='p-2 pr-10 bg-red-300 text-red-700 self-end font-semibold'
         >{getDiskonPercentage(product)}% Off</p>}

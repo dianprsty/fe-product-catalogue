@@ -36,7 +36,6 @@ const RegisterForm = () => {
 
 
   const handleSubmit = (values) =>{
-    console.log(values);
     setIsLoading(true)
     axios.post('https://arhandev.maisyah.id/api/final/register', values)
       .then(res => {
@@ -52,11 +51,11 @@ const RegisterForm = () => {
   
   
   const registerSchema = Yup.object({
-    email: Yup.string().email().required(),
-    name: Yup.string().required(),
-    username : Yup.string().required(),
-    password: Yup.string().required(),
-    password_confirmation: Yup.string().required('re-password is a required field')
+    email: Yup.string().email('Please input correct email').required('Please input your email'),
+    name: Yup.string().required('Please input your name'),
+    username : Yup.string().required('Please input new username'),
+    password: Yup.string().required('Please input new password'),
+    password_confirmation: Yup.string().required('Please re-input password')
   })
   return (
     <>
@@ -74,7 +73,7 @@ const RegisterForm = () => {
               <h1 className='text-center text-4xl font-bold text-blue-500'>Register</h1>
             </div>
             <div className='flex flex-col sm:flex-row w-full gap-2 justify-between'>
-              <label className='p-2' >Full Name</label>
+              <label className='p-2' >Full Name<span className='text-red-500'>*</span></label>
               <div>
                 <Field
                   className='border border-blue-500 rounded-lg h-9 px-2'
@@ -83,7 +82,7 @@ const RegisterForm = () => {
               </div>
             </div>
             <div className='flex flex-col sm:flex-row w-full gap-2 justify-between'>
-              <label className='p-2' >Email</label>
+              <label className='p-2' >Email<span className='text-red-500'>*</span></label>
               <div>
                 <Field
                   className='border border-blue-500 rounded-lg h-9 px-2'
@@ -92,7 +91,7 @@ const RegisterForm = () => {
               </div>
             </div>
             <div className='flex flex-col sm:flex-row w-full gap-2 justify-between'>
-              <label className='p-2' >Username</label>
+              <label className='p-2' >Username<span className='text-red-500'>*</span></label>
               <div>
                 <Field
                   className='border border-blue-500 rounded-lg h-9 px-2'
@@ -101,7 +100,7 @@ const RegisterForm = () => {
               </div>
             </div>
             <div className='flex flex-col sm:flex-row w-full gap-2 justify-between'>
-              <label className='p-2'>Password</label>
+              <label className='p-2'>Password<span className='text-red-500'>*</span></label>
               <div>
                 <Field
                   className='border border-blue-500 rounded-lg h-9 px-2'
@@ -110,7 +109,7 @@ const RegisterForm = () => {
               </div>
             </div>
             <div className='flex flex-col sm:flex-row w-full gap-2 justify-between'>
-              <label className='px-2'>Confirm Password</label>
+              <label className='px-2'>Confirm Password<span className='text-red-500'>*</span></label>
               <div>
                 <Field
                   className='border border-blue-500 rounded-lg h-9 px-2'
