@@ -32,6 +32,8 @@ const Logout = () =>{
       .then(res =>{
         localStorage.removeItem('token')
         localStorage.removeItem('username')
+        localStorage.removeItem('name')
+        localStorage.removeItem('email')        
         navigate('/')
         openNotificationWithIcon('info', res.data.info)
       }).catch((err =>{
@@ -54,11 +56,22 @@ const Logout = () =>{
   const items = [
     {
       label: <Link to={'/setting'} className='font-sans' >
-          <div className='flex items-center gap-3'>
-            <SettingOutlined />Setting Product
-          </div>
-        </Link>,
+              <div className='flex items-center gap-3'>
+                <SettingOutlined />Setting Product
+              </div>
+            </Link>,
       key: '0',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: <Link to={'/profile'} className='font-sans' >
+              <div className='flex items-center gap-3'>
+                <UserOutlined />Profile
+              </div>
+            </Link>,
+      key: '1',
     },
     {
       type: 'divider',

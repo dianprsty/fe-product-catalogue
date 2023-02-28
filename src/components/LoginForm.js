@@ -28,6 +28,8 @@ const LoginForm = () => {
       .then(res => {
         localStorage.setItem('token', res.data.data.token)
         localStorage.setItem('username', res.data.data.user.username)
+        localStorage.setItem('name', res.data.data.user.name)
+        localStorage.setItem('email', res.data.data.user.email)
         navigate('/')
         openNotificationWithIcon('success', 'Success', res.data.info)
   }).catch(err => {

@@ -16,6 +16,7 @@ import CreateProduct from './pages/CreateProduct';
 import UpdateProduct from './pages/UpdateProduct';
 import GuestRoute from './wrapper/GuestRoute';
 import NotFound from './pages/NotFound';
+import Profile from './pages/Profile';
 
 function App() {
   const {isLoading, ctxHolder} = useContext(GlobalContext)
@@ -35,6 +36,7 @@ function App() {
             </Route>
             <Route element={<ProtectedRoute />} >
               <Route path='/setting' element={<SettingProduct />} />
+              <Route path='/profile' element={<Profile />} />
               <Route path='/products/create' element={<CreateProduct />} />
               <Route path='/products/update/:id' element={<UpdateProduct />} />
             </Route>
