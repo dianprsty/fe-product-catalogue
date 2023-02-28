@@ -93,7 +93,7 @@ const CatalogProduct = () => {
           <Space className='w-60'>
             <InputNumber className='w-40' min={0} max={2147483647} value={min} onChange={setMin} />
             <Button
-              className='bg-blue-500 text-white font-semibold'
+              className='border-blue-500 text-blue-500 bg-white font-semibold'
               onClick={() => {
                 setMin(0);
               }}
@@ -106,7 +106,7 @@ const CatalogProduct = () => {
           <Space className='w-60'>
             <InputNumber className='w-40' min={0} max={2147483647} value={max} onChange={setMax} />
             <Button
-              className='bg-blue-500 text-white font-semibold'
+              className='text-blue-500 border-blue-500 bg-white font-semibold'
               onClick={() => {
                 setMax(0);
               }}
@@ -115,7 +115,7 @@ const CatalogProduct = () => {
             </Button>
           </Space>
           <Button
-            className='border-blue-500 text-blue-500 font-semibold rounded-md w-60 mt-2'
+            className='bg-blue-500 hover:text-white text-white font-semibold rounded-md w-60 mt-2'
             onClick={() => {
               setSearch('')
               setCategory('all')
@@ -144,6 +144,7 @@ const CatalogProduct = () => {
                       icon={<InboxOutlined />}
                       title="Not Found"
                       subTitle="Sorry, the product you search does not exist."
+                      className=' w-screen lg:w-[800px]'
                     />
                   : displayProducts.map((item) => {
                     return(
