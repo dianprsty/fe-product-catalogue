@@ -141,7 +141,8 @@ const ProductForm = ({type}) => {
           errors,
           touched,
           values,
-          setValues
+          setValues,
+          setFieldTouched
         }) => {
           return(
             isLoading ? <Skeleton/> : <Form >
@@ -206,6 +207,7 @@ const ProductForm = ({type}) => {
                         value={values.category} className='border rounded-md border-blue-500 w-full h-9 px-2 -mb-4'
                         bordered={false} 
                         onChange={(value)=>{setValues({...values, category:value})}}
+                        onBlur={() => setFieldTouched('category', true, true)}
                         options={[
                           { value: '', label:'Select Category', disabled:true },
                           { value: 'teknologi', label:'Teknologi' },
