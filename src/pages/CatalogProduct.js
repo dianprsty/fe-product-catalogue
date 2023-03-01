@@ -13,6 +13,7 @@ const CatalogProduct = () => {
   const [ category, setCategory ] = useState('all')
   const [ search, setSearch ] = useState('')
   const [diskon, setDiskon] =useState('all')
+  const [sortPrice, setSortPrice] =useState('')
   const [min, setMin] =useState(0)
   const [max, setMax] =useState(0)
   
@@ -33,6 +34,26 @@ const CatalogProduct = () => {
               && (item.is_diskon == diskon || diskon === 'all')
               && isHarga
     })
+    if (sortPrice !== ''){
+      filteredProduct.sort((a,b)=>{
+        let first
+        let second
+        if(a.is_diskon){
+          first = a.harga_diskon
+        }else{
+          first = a.harga
+        }
+        if(b.is_diskon){
+          second = b.harga_diskon
+        }else{
+          second = b.harga
+        }
+        if(sortPrice === 'asc'){
+          return first - second
+        }
+        return second - first
+      })
+    }
     setDisplayProducts(filteredProduct)
   }
 
@@ -48,11 +69,11 @@ const CatalogProduct = () => {
   useEffect(()=> {
     filterProduct()
   // eslint-disable-next-line
-  },[products, category, search, diskon, min, max])
+  },[products, category, search, diskon, min, max, sortPrice])
 
   return (
     <div className='w-10/12 lg:w-full mx-auto flex justify-end gap-8 items-start top-0 lg:pr-16 lg:-mt-[100px]'>
-      <FloatButton.BackTop visibilityHeight={0} />
+      {console.log(sortPrice)}<FloatButton.BackTop visibilityHeight={0} />
       <div 
         className='shadow-xl lg:h-screen lg:fixed lg:left-0 bg-white hidden lg:flex' 
       >
@@ -88,6 +109,16 @@ const CatalogProduct = () => {
               { value: '1', label:'Discount' },
             ]}
           />
+          <label className='-mb-2 font-semibold text-blue-400 pt-0'>Sort by Price</label>
+          <Select
+            defaultValue="" className='w-60 border rounded-md  hover:border-blue-400'
+            onChange={value => setSortPrice(value)} value={sortPrice}
+            options={[
+              { value: '', label:'Default' },
+              { value: 'asc', label:'Lowest to Highest' },
+              { value: 'desc', label:'Highest to Lowest' },
+            ]}
+          />
 
           <label className='-mb-2 font-semibold text-blue-400 pt-0'>Minimum Price</label>
           <Space className='w-60'>
@@ -120,6 +151,7 @@ const CatalogProduct = () => {
               setSearch('')
               setCategory('all')
               setDiskon('all')
+              setSortPrice('')
               setMin(0)
               setMax(0)
               setDisplayProducts(products);
