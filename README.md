@@ -1,4 +1,4 @@
-# Deplyment Link
+# Deployment Link
 [https://allshop-bydian.netlify.app]
 
 
