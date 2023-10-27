@@ -15,7 +15,7 @@ const DetailProduct = () => {
 
   useEffect(()=>{
     setIsLoading(true)
-    axios.get(`https://arhandev.maisyah.id/api/final/products/${id}`)
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`)
       .then(res =>{
         setProduct(res.data.data)
       }).catch(err => {console.log(err)})

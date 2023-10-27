@@ -37,7 +37,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (values) =>{
     setIsLoading(true)
-    axios.post('https://arhandev.maisyah.id/api/final/register', values)
+    axios.post(`${process.env.REACT_APP_API_BASE_URL}/register`, values)
       .then(res => {
         navigate('/login')
         openNotificationWithIcon('success', 'Success', res.data.info)

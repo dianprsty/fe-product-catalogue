@@ -22,7 +22,7 @@ const DeleteProduct = ({id}) => {
   const confirm = () => {
     setIsLoading(true)
     let token = localStorage.getItem('token')
-    axios.delete(`https://arhandev.maisyah.id/api/final/products/${id}`,
+    axios.delete(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`,
       {headers: {Authorization: `Bearer ${token}`}}
     ).then(res => {
       getAllProducts()

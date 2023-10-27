@@ -35,7 +35,7 @@ const ProductForm = ({type}) => {
   useEffect(()=>{
     if (type === 'update'){
       setIsLoading(true)
-      axios.get(`https://arhandev.maisyah.id/api/final/products/${id}`)
+      axios.get(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`)
         .then((res) => {
           setProduct((state)=>({
             ...state,
@@ -61,7 +61,7 @@ const ProductForm = ({type}) => {
     setIsLoading(true)
     let token = localStorage.getItem('token')
     if(type === 'create'){
-      axios.post('https://arhandev.maisyah.id/api/final/products',
+      axios.post(`${process.env.REACT_APP_API_BASE_URL}/products`,
         values,
         {headers: {
           Authorization : `Bearer ${token}`
@@ -90,7 +90,7 @@ const ProductForm = ({type}) => {
       })
     }
     if(type === 'update'){
-      axios.put(`https://arhandev.maisyah.id/api/final/products/${id}`,
+      axios.put(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`,
         values,
         {headers: {
           Authorization : `Bearer ${token}`

@@ -24,7 +24,7 @@ const LoginForm = () => {
   
   const handleSubmit = (values) =>{
     setIsLoading(true)
-    axios.post('https://arhandev.maisyah.id/api/final/login', values)
+    axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, values)
       .then(res => {
         localStorage.setItem('token', res.data.data.token)
         localStorage.setItem('username', res.data.data.user.username)

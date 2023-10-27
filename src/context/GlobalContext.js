@@ -19,11 +19,12 @@ export const GlobalProvider = ({children}) =>{
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  // eslint-disable-next-line
   const [api, contextHolder] = notification.useNotification();
   const [ctxHolder, setCtxHolder] = useState(contextHolder)
 
   const getAllProducts = async() => {
-    await axios.get('https://arhandev.maisyah.id/api/final/products')
+    await axios.get(`${process.env.REACT_APP_API_BASE_URL}/products`)
       .then(res => {
         setProducts(res.data.data)
         setCategories(getCategory(res.data.data))

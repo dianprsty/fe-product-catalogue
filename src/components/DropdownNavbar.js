@@ -26,7 +26,7 @@ const Logout = () =>{
   const logout = () => {
     setIsLoading(true)
     let token = localStorage.getItem('token')
-    axios.post('https://arhandev.maisyah.id/api/final/logout',
+    axios.post(`${process.env.REACT_APP_API_BASE_URL}/logout`,
     {},
     {headers: {Authorization: `Bearer ${token}`}})
       .then(res =>{
